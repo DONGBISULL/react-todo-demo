@@ -12,11 +12,22 @@ function App() {
 
     const [activeTab, setActiveTab] = useState("all");
     const [todo, setTodo] = useState("")
-    const [todos, setTodos] = useState([
-        {id: generateId(), text: '항목 1', completed: false},
-        {id: generateId(), text: '항목 2', completed: false},
-    ]);
+    const [todos, setTodos] = useState(() => {
+        try {
+            let saved = localStorage.getItem("todos");
+            console.log(saved)
+            return saved ? JSON.parse(saved) : [];
+        } catch (e) {
+            console.log('localstorage 읽기 실패 ', e)
+        }
+    });
 
+    /*
+     * vue의 computed와 유사한 기능 같음 - 캐싱
+     * computed : 의존성 자동 추적
+     *
+     * useMemo : 의존성 수동 작성 (수동 최적화)
+    */
     const filterTodos = useMemo(() => {
         if (activeTab === "all") return todos;
         if (activeTab === "active") return todos.filter(item => !item.completed);
@@ -41,9 +52,7 @@ function App() {
     }
 
     const handleChange = (e) => {
-        console.log(e.target)
         const {value} = e.target;
-        console.log(" value " + value)
         setTodo(value);
     }
 
@@ -51,10 +60,9 @@ function App() {
         setActiveTab(tab);
     }
 
-    // 렌더링이 완료된 후 실행
     useEffect(() => {
-        console.log(`Todos: 변경 ${JSON.stringify(todos)}`);
-    }, [todos])
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }, [todos]);
 
     return (
         <>
