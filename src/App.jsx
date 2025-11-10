@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import TodoItem from "./components/TodoItem.jsx";
 import {generateId} from "./utils/commons.js";
 import "./App.css";
@@ -16,6 +16,12 @@ function App() {
         {id: generateId(), text: '항목 1', completed: false},
         {id: generateId(), text: '항목 2', completed: false},
     ]);
+
+    const filterTodos = useMemo(() => {
+        if (activeTab === "all") return todos;
+        if (activeTab === "active") return todos.filter(item => !item.completed);
+        if (activeTab === "complete") return todos.filter(item => item.completed);
+    }, [todos, activeTab]);
 
     const handleToggle = (id) => {
         setTodos(todos.map(todo =>
@@ -41,7 +47,7 @@ function App() {
         setTodo(value);
     }
 
-    const handleTabChange = (tab)=> {
+    const handleTabChange = (tab) => {
         setActiveTab(tab);
     }
 
@@ -50,16 +56,13 @@ function App() {
         console.log(`Todos: 변경 ${JSON.stringify(todos)}`);
     }, [todos])
 
-    useEffect(() => {
-
-    }, [activeTab])
-
     return (
         <>
             <nav className="tab-container">
                 <ul className="tab-list">
                     {tabs.map(item => (
-                        <li key={item.value} className={`tab ${activeTab === item.value ? 'active' : ''}`} onClick={()=>handleTabChange(item?.value)} >
+                        <li key={item.value} className={`tab ${activeTab === item.value ? 'active' : ''}`}
+                            onClick={() => handleTabChange(item?.value)}>
                             {item.label}
                         </li>
                     ))
@@ -68,7 +71,7 @@ function App() {
             </nav>
             <ul className='tab-content'>
                 {
-                    todos.map((todo) => (
+                    filterTodos.map((todo) => (
                             <TodoItem key={todo.id} todo={todo} onToggle={handleToggle} onDelete={handleDelete}/>
                         )
                     )
