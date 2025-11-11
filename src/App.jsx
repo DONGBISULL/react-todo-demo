@@ -1,9 +1,12 @@
-import {useEffect, useMemo, useState} from "react";
+import {useContext, useEffect, useMemo, useState} from "react";
 import TodoItem from "./components/TodoItem.jsx";
 import {generateId} from "./utils/commons.js";
 import "./App.css";
 import Tabs from "./components/Tabs.jsx";
 import TodoInput from "./components/TodoInput.jsx";
+import {ThemeContext, ThemeProvider} from "./context/ThemeContext.jsx";
+import {CiLight} from "react-icons/ci";
+import {MdDarkMode} from "react-icons/md";
 
 function App() {
     const tabs = [
@@ -11,6 +14,8 @@ function App() {
         {value: 'active', label: 'Active'},
         {value: 'complete', label: 'Complete'},
     ]
+
+    const {theme, toggleTheme} = useContext(ThemeContext);
 
     const [activeTab, setActiveTab] = useState("all");
     const [todo, setTodo] = useState("")
@@ -66,6 +71,7 @@ function App() {
 
     return (
         <>
+            <button onClick={toggleTheme}>{theme === 'dark' ? <CiLight/> : <MdDarkMode/>}</button>
             <Tabs tabs={tabs} activeTab={activeTab} onClick={handleTabChange}/>
             <ul className='tab-content'>
                 {
