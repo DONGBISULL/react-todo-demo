@@ -2,6 +2,8 @@ import {useEffect, useMemo, useState} from "react";
 import TodoItem from "./components/TodoItem.jsx";
 import {generateId} from "./utils/commons.js";
 import "./App.css";
+import Tabs from "./components/Tabs.jsx";
+import TodoInput from "./components/TodoInput.jsx";
 
 function App() {
     const tabs = [
@@ -15,7 +17,6 @@ function App() {
     const [todos, setTodos] = useState(() => {
         try {
             let saved = localStorage.getItem("todos");
-            console.log(saved)
             return saved ? JSON.parse(saved) : [];
         } catch (e) {
             console.log('localstorage 읽기 실패 ', e)
@@ -51,8 +52,7 @@ function App() {
         )
     }
 
-    const handleChange = (e) => {
-        const {value} = e.target;
+    const handleChange = (value) => {
         setTodo(value);
     }
 
@@ -66,17 +66,7 @@ function App() {
 
     return (
         <>
-            <nav className="tab-container">
-                <ul className="tab-list">
-                    {tabs.map(item => (
-                        <li key={item.value} className={`tab ${activeTab === item.value ? 'active' : ''}`}
-                            onClick={() => handleTabChange(item?.value)}>
-                            {item.label}
-                        </li>
-                    ))
-                    }
-                </ul>
-            </nav>
+            <Tabs tabs={tabs} activeTab={activeTab} onClick={handleTabChange}/>
             <ul className='tab-content'>
                 {
                     filterTodos.map((todo) => (
@@ -85,8 +75,11 @@ function App() {
                     )
                 }
             </ul>
-            <input name="todo" value={todo} placeholder="Add Todo" onChange={(e) => handleChange(e)}/>
-            <button onClick={() => handleAdd(todo)}>Add</button>
+            <TodoInput
+                todo={todo}
+                onChange={handleChange}        // 또는 handleChange
+                onAdd={handleAdd}
+            />
         </>
     );
 }
