@@ -1,12 +1,12 @@
 import {useContext, useEffect, useMemo, useState} from "react";
-import TodoItem from "./components/TodoItem.jsx";
 import {generateId} from "./utils/commons.js";
-import "./App.css";
 import Tabs from "./components/Tabs.jsx";
 import TodoInput from "./components/TodoInput.jsx";
-import {ThemeContext, ThemeProvider} from "./context/ThemeContext.jsx";
+import {ThemeContext} from "./context/ThemeContext.jsx";
 import {CiLight} from "react-icons/ci";
 import {MdDarkMode} from "react-icons/md";
+import TodoList from "./components/TodoList.jsx";
+import TodoHeader from "./components/TodoHeader.jsx";
 
 function App() {
     const tabs = [
@@ -71,16 +71,8 @@ function App() {
 
     return (
         <>
-            <button onClick={toggleTheme}>{theme === 'dark' ? <CiLight/> : <MdDarkMode/>}</button>
-            <Tabs tabs={tabs} activeTab={activeTab} onClick={handleTabChange}/>
-            <ul className='tab-content'>
-                {
-                    filterTodos.map((todo) => (
-                            <TodoItem key={todo.id} todo={todo} onToggle={handleToggle} onDelete={handleDelete}/>
-                        )
-                    )
-                }
-            </ul>
+            <TodoHeader tabs={tabs} activeTab={activeTab} onTabChange={handleTabChange} onToggle={toggleTheme} />
+            <TodoList todos={filterTodos} onDelete={handleDelete} onToggle={handleToggle}/>
             <TodoInput
                 todo={todo}
                 onChange={handleChange}        // 또는 handleChange
