@@ -12,10 +12,13 @@ const TodoInput = ({todo, onChange, onAdd}) => {
 
     return (
         <>
-            <input name="todo"
-                   value={todo} placeholder="Add Todo"
-                   onChange={(e) => onChange(e.target.value)}/>
-            <button onClick={(e) => handleSubmit(e)}>Add</button>
+            <div className="footer">
+                <input className="todo-input"
+                       name="todo"
+                       value={todo} placeholder="Add Todo"
+                       onChange={(e) => onChange(e.target.value)}/>
+                <button className="todo-input-btn" onClick={(e) => handleSubmit(e)}>Add</button>
+            </div>
         </>
     );
 };

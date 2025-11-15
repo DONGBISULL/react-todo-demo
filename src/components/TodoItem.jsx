@@ -5,9 +5,15 @@ const TodoItem = ({todo, onToggle, onDelete}) => {
     return (
         <>
             <li className="todo-item">
-                <input type="checkbox" checked={todo.completed} onChange={() => onToggle(todo.id)}/>
-                {todo.text}
-                <button onClick={() => onDelete(todo.id)}>
+                <input
+                    type="checkbox"
+                    checked={todo.completed}
+                    onChange={() => onToggle(todo.id)}
+                />
+                <span className={`todo-text ${todo.completed ? 'completed' : ''}`}>
+                    {todo.text}
+                </span>
+                <button className="todo-delete-btn" onClick={() => onDelete(todo.id)}>
                     <FaTrashAlt/>
                 </button>
             </li>

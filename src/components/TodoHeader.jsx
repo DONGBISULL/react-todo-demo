@@ -1,13 +1,12 @@
 import React from 'react';
-import {CiLight} from "react-icons/ci";
-import {MdDarkMode} from "react-icons/md";
+import {IoSunny, IoMoon} from "react-icons/io5";
 import Tabs from "./Tabs.jsx";
 
 function TodoHeader({tabs, theme, activeTab, onTabChange, onToggle}) {
     return (
         <>
             <div className="header">
-                <button onClick={onToggle}>{theme === 'dark' ? <CiLight/> : <MdDarkMode/>}</button>
+                <button className="theme-btn" onClick={onToggle}>{theme === 'dark' ? <IoSunny/> : <IoMoon/>}</button>
                 <Tabs tabs={tabs} activeTab={activeTab} onClick={onTabChange}/>
             </div>
         </>

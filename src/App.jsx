@@ -71,13 +71,15 @@ function App() {
 
     return (
         <>
-            <TodoHeader tabs={tabs} activeTab={activeTab} onTabChange={handleTabChange} onToggle={toggleTheme} />
-            <TodoList todos={filterTodos} onDelete={handleDelete} onToggle={handleToggle}/>
-            <TodoInput
-                todo={todo}
-                onChange={handleChange}        // 또는 handleChange
-                onAdd={handleAdd}
-            />
+            <div className="todo-container">
+                <TodoHeader tabs={tabs} theme={theme} activeTab={activeTab} onTabChange={handleTabChange} onToggle={toggleTheme}/>
+                <TodoList todos={filterTodos} onDelete={handleDelete} onToggle={handleToggle}/>
+                <TodoInput
+                    todo={todo}
+                    onChange={handleChange}        // 또는 handleChange
+                    onAdd={handleAdd}
+                />
+            </div>
         </>
     );
 }

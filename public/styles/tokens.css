@@ -336,16 +336,26 @@
     --tab-text: var(--gray-700);
     --tab-active-text: var(--blue-600);
     --tab-active-border: var(--blue-500);
+    --accent-bg: var(--orange-500);
+    --accent-bg-hover: var(--orange-600);
+    --accent-text: var(--white);
 }
 
 /** 다크 모드 */
 [data-theme="dark"] {
     --text-primary: var(--gray-100);
-    --bg-primary: #191d33;
+    --text-secondary: var(--gray-300);
+    --text-tertiary: var(--gray-500);
+    --bg-primary: #191d33; /* 카드 배경 */
+    --bg-secondary: #2c3049; /* 전체 배경 */
+    --bg-tertiary: #262c4a;
     --text-disabled: var(--gray-700);
+    --border-color-light: rgba(255, 255, 255, 0.08);
 
     --tab-bg: #191d33;
     --tab-text: #bd7e5f;
     --tab-active-text: #ec8754;
     --tab-active-border: var(--gray-700);
+    --accent-bg: #ec8754;
+    --accent-bg-hover: #f29460;
 }
