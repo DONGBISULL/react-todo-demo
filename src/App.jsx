@@ -3,8 +3,6 @@ import {generateId} from "./utils/commons.js";
 import Tabs from "./components/Tabs.jsx";
 import TodoInput from "./components/TodoInput.jsx";
 import {ThemeContext} from "./context/ThemeContext.jsx";
-import {CiLight} from "react-icons/ci";
-import {MdDarkMode} from "react-icons/md";
 import TodoList from "./components/TodoList.jsx";
 import TodoHeader from "./components/TodoHeader.jsx";
 
@@ -18,7 +16,6 @@ function App() {
     const {theme, toggleTheme} = useContext(ThemeContext);
 
     const [activeTab, setActiveTab] = useState("all");
-    const [todo, setTodo] = useState("")
     const [todos, setTodos] = useState(() => {
         try {
             let saved = localStorage.getItem("todos");
@@ -57,10 +54,6 @@ function App() {
         )
     }
 
-    const handleChange = (value) => {
-        setTodo(value);
-    }
-
     const handleTabChange = (tab) => {
         setActiveTab(tab);
     }
@@ -75,8 +68,6 @@ function App() {
                 <TodoHeader tabs={tabs} theme={theme} activeTab={activeTab} onTabChange={handleTabChange} onToggle={toggleTheme}/>
                 <TodoList todos={filterTodos} onDelete={handleDelete} onToggle={handleToggle}/>
                 <TodoInput
-                    todo={todo}
-                    onChange={handleChange}        // 또는 handleChange
                     onAdd={handleAdd}
                 />
             </div>
