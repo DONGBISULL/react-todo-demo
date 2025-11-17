@@ -1,0 +1,48 @@
+
+.todoItem {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: var(--gap-2);
+    padding: var(--padding-3) var(--padding-4);
+    border-radius: var(--radius-md);
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.todoLabel {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2);
+    cursor: pointer;
+}
+
+.todoLabel input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+
+.todoText {
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+}
+
+.completed {
+    color: var(--text-tertiary);
+    text-decoration: line-through;
+}
+
+.todoDeleteBtn {
+    border: none;
+    background: transparent;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: color var(--duration-fast);
+}
+
+.todoDeleteBtn:hover {
+    color: var(--color-error);
+}
