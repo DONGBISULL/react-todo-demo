@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: center;
+    background: var(--bg-primary);
+}
+
+.todoInput {
+    width: 100%;
+}
+
+.todoInputBtn {
+    background: var(--accent-bg);
+    color: var(--text-primary);
+    border: none;
+    padding: var(--padding-3) var(--padding-4);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-weight: var(--font-semibold);
+    cursor: pointer;
+    transition: background var(--duration-fast);
+}
+
+.todoInputBtn:hover {
+    background: var(--accent-bg-hover);
+}

@@ -1,7 +1,7 @@
 import {useContext, useEffect, useMemo, useState} from "react";
 import {generateId} from "./utils/commons.js";
 import Tabs from "./components/Tabs.jsx";
-import TodoInput from "./components/TodoInput.jsx";
+import TodoInput from "./components/TodoInput/TodoInput.jsx";
 import {ThemeContext} from "./context/ThemeContext.jsx";
 import TodoList from "./components/TodoList.jsx";
 import TodoHeader from "./components/TodoHeader.jsx";

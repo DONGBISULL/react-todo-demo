@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import styles from './TodoInput.module.css';
 
 const TodoInput = ({onAdd}) => {
 
@@ -14,12 +15,12 @@ const TodoInput = ({onAdd}) => {
 
     return (
         <>
-            <div className="footer">
-                <input className="todo-input"
+            <div className={styles.container}>
+                <input className={styles.todoInput}
                        name="todo"
                        value={text} placeholder="Add Todo"
                        onChange={(e) => setText(e.target.value)}/>
-                <button className="todo-input-btn" onClick={(e) => handleSubmit(e)}>Add</button>
+                <button className={styles.todoInputBtn} onClick={(e) => handleSubmit(e)}>Add</button>
             </div>
         </>
     );
