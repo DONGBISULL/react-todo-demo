@@ -3,7 +3,7 @@ import {generateId} from "./utils/commons.js";
 import Tabs from "./components/Tabs.jsx";
 import TodoInput from "./components/TodoInput/TodoInput.jsx";
 import {ThemeContext} from "./context/ThemeContext.jsx";
-import TodoList from "./components/TodoList.jsx";
+import TodoList from "./components/TodoList/TodoList.jsx";
 import TodoHeader from "./components/TodoHeader.jsx";
 
 function App() {
@@ -21,7 +21,8 @@ function App() {
             let saved = localStorage.getItem("todos");
             return saved ? JSON.parse(saved) : [];
         } catch (e) {
-            console.log('localstorage 읽기 실패 ', e)
+            console.log('localstorage 읽기 실패 ', e);
+            return [];  // fallback to empty array on error
         }
     });
 

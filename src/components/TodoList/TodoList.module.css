@@ -1,0 +1,22 @@
+.content {
+    margin: 0 0 var(--margin-4);
+    padding: var(--padding-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-2);
+    background: var(--tab-bg);
+    border-radius: var(--radius-md);
+    min-height: 0;
+}
+
+/* 항목이 많아질 경우 항목이 사리지는걸 방지하기 위해 추가 */
+.list {
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
+.nodata {
+    padding: var(--padding-3);
+    text-align: center;
+    font-weight: 500;
+}
