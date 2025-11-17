@@ -3,7 +3,7 @@ import styles from './TodoInput.module.css';
 
 const TodoInput = ({onAdd}) => {
 
-    const [text, setText] = useState()
+    const [text, setText] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault();
