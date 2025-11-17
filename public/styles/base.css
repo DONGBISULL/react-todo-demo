@@ -12,6 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    accent-color: var(--accent-bg);
 }
 
 #root {
@@ -21,7 +22,7 @@ body {
     max-width: 500px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin: var(--margin-6) auto;
     border-radius: 1rem;
 }
@@ -36,11 +37,34 @@ button {
     border: none;
 }
 
+/* */
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+/*  트랙 꾸미기 */
+::-webkit-scrollbar-track {
+    /*background: var(--accent-bg);*/
+}
+
+/* 막대 꾸미기 */
+::-webkit-scrollbar-thumb {
+    background: var(--border-color-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-bg-hover);
+}
+
 .todo-container {
     background: var(--bg-primary);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-xl);
     padding: var(--padding-8);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0; /* allow children to scroll within without clipping */
 }
 
 /* 헤더 */
@@ -90,62 +114,3 @@ button {
     color: var(--tab-active-text);
     border-bottom-color: var(--tab-active-border);
 }
-
-.tab-content {
-    margin: 0 0 var(--margin-4);
-    padding: var(--padding-3);
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-2);
-    background: var(--tab-bg);
-    border-radius: var(--radius-md);
-}
-
-.todo-item {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    column-gap: var(--gap-2);
-    padding: var(--padding-3) var(--padding-4);
-    border-radius: var(--radius-md);
-    background: var(--bg-tertiary);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color-light);
-    box-shadow: var(--shadow-sm);
-}
-
-.todo-item input[type="checkbox"] {
-    width: 1rem;
-    height: 1rem;
-    accent-color: var(--accent-bg);
-}
-
-.todo-text {
-    font-size: var(--text-base);
-    font-weight: var(--font-medium);
-}
-
-.todo-text.completed {
-    color: var(--text-tertiary);
-    text-decoration: line-through;
-}
-
-.todo-delete-btn {
-    border: none;
-    background: transparent;
-    color: var(--text-tertiary);
-    cursor: pointer;
-    transition: color var(--duration-fast);
-}
-
-.todo-delete-btn:hover {
-    color: var(--color-error);
-}
-
-.nodata {
-    padding: var(--padding-3);
-    text-align: center;
-    font-weight: 500;
-}
-
-/* */
